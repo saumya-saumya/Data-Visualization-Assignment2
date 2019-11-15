@@ -1,0 +1,670 @@
+<!doctype html>
+<head>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+    <meta content="utf-8" http-equiv="encoding">
+</head>
+<title>Basic Parallel Coordinates Example</title>
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/parcoords/0.7.0/d3.parcoords.css">
+<link rel="stylesheet" type="text/css" href="style.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<!-- custom stling goes here -->
+
+<body onload="drawInitialchart()">
+    
+  
+
+      <div class="row bottom">
+          <div class ="col-md-12" >
+          <!--<div id="example" class="parcoords" style="width:900px;height:250px"></div>-->
+             <div style="width:50%;min-height:250px;height:auto;float:left;"> 
+			<strong style="text-align:left">Ontology: 1 and Visualization: 1</strong>
+
+            <div id="example" class="parcoords" style="width:100%;min-height:250px;height:auto;float:left"></div>
+			</div>
+			<div style="width:50%;min-height:250px;height:auto;float:right">
+			             <strong style="text-align:left">Ontology: 2 and Visualization: 1</strong>
+
+			<div id="example3" class="parcoords" style="width:100%;min-height:250px;height:auto;float:right"></div>
+			</div>
+
+          </div>
+		  
+          <!--<div class ="col-md-2" style="text-align:center">
+          <div id="example" class="parcoords" style="width:900px;height:250px"></div>
+          <strong>Stimuli Name </strong>
+          </div>-->
+
+
+
+
+      </div>
+	  
+      <hr></hr>
+<!--	 
+<div class="row">
+     
+
+<div class="col-md-4" >
+    <div class="col-md-12 " style="text-align:center">
+    <strong > Hiding Selected Axis from Parallel Coordinate</strong><br>
+     <br>
+    </div>
+    <div class="col-md-12" id="hide-control">
+
+    </div>
+</div>
+
+<div class="col-md-4" >
+    <div class="col-md-12 " style="text-align:center">
+    <strong > Hiding Selected Axis from Parallel Coordinate Group 2</strong><br>
+     <br>
+    </div>
+    <div class="col-md-12" id="hide-control-2">
+
+    </div>
+</div> 
+
+</div> -->
+
+
+      <div class="row bottom">
+          <div class ="col-md-12" >
+          <!--<div id="example" class="parcoords" style="width:900px;height:250px"></div>-->
+            <div style="width:50%;min-height:250px;height:auto;float:left;"> 
+			<strong style="text-align:left">Ontology: 1 and Visualization: 2</strong>
+
+            <div id="example2" class="parcoords" style="width:100%;min-height:250px;height:auto;float:left"></div>
+			</div>
+			<div style="width:50%;min-height:250px;height:auto;float:right">
+			             <strong style="text-align:left">Ontology: 2 and Visualization: 2</strong>
+
+			<div id="example4" class="parcoords" style="width:100%;min-height:250px;height:auto;float:right"></div>
+			</div>
+
+          </div>
+
+		  
+          <!--<div class ="col-md-2" style="text-align:center">
+          <div id="example" class="parcoords" style="width:900px;height:250px"></div>
+          <strong>Stimuli Name </strong>
+          </div>-->
+
+
+
+
+      </div>
+	  
+      <hr></hr>
+<div class="row">
+     
+
+<div class="col-md-4" >
+    <div class="col-md-12 " style="text-align:center">
+    <strong > Hiding Selected Axis from Parallel Coordinate</strong><br>
+     <br>
+    </div>
+    <div class="col-md-12" id="hide-control">
+
+    </div>
+<!--	<div class="container-fluid"> -->
+
+    
+    </div> 
+	<div class="col-md-4" style="padding-top: 5px;"">
+  
+       <div class="col-md-6 " style="text-align:right;padding-bottom: 5px;"></div>
+      <button onclick="getUpdatedData()" type="button" class="btn btn-info btn-sm" > <p style="text-align:center ">Apply </p></button>
+      </div>
+<!-- </div> -->
+
+<!--
+<div class="col-md-4" >
+    <div class="col-md-12 " style="text-align:center">
+    <strong > Hiding Selected Axis from Parallel Coordinate Group 2</strong><br>
+     <br>
+    </div>
+    <div class="col-md-12" id="hide-control-4">
+
+    </div>
+</div>-->
+
+</div>
+<br>
+<div class="col-md-4 " style="text-align:center">
+
+</div>
+
+<div class="col-md-5 " style="text-align:center">
+
+</div>
+
+</body>
+<!-- 3rd party Js libraries -->
+<script src="lib/d3.js"></script>
+<script src="lib/d3.parcoords.js"></script>
+<script src="lib/sylvester.js"></script>
+<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
+<script src="http://www.columbia.edu/~cme2126/datavisuals/_include/js/lib/d3.underscore.math.js"></script>
+<script src="http://www.columbia.edu/~cme2126/datavisuals/_include/js/lib/d3.divgrid.js"></script>
+<link href="add_axis_value6.css" rel="stylesheet">
+<script   src="https://code.jquery.com/jquery-2.2.4.min.js"   integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="   crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/7.1.0/bootstrap-slider.js"></script>
+<!-- Custom Javascript code goes here -->
+<script>
+
+function constructDOM(data,maxvalue){
+  var li2="",li1="";
+  console.log(maxvalue);
+  
+  for(attr in maxvalue){
+  //alert(attr)
+    li1+='<input type="checkbox" class = "addin" name="User" value="'+attr+'">'+attr+'</input><br><input type="range" class = "slidfi" min="0" max="1" value=".5" step="0.1"><br>';
+    li2+='<input type="checkbox" class = "addinHide" name="User" value="'+attr+'">'+attr+'</input><br>';
+  }
+  //document.getElementById('merge-control').innerHTML=li1;
+  document.getElementById('hide-control').innerHTML=li2;
+  return 0;
+}
+
+function constructDOMG2(data,maxvalue){
+  var li22="",li12="";
+  console.log(maxvalue);
+  for(attr in maxvalue){
+    li12+='<input type="checkbox" class = "addin" name="User" value="'+attr+'">'+attr+'</input><br><input type="range" class = "slidfi" min="0" max="1" value=".5" step="0.1"><br>';
+    li22+='<input type="checkbox" class = "addinHide" name="User" value="'+attr+'">'+attr+'</input><br>';
+  }
+  //document.getElementById('merge-control').innerHTML=li1;
+  //document.getElementById('hide-control-2').innerHTML=li22;
+  return 0;
+}
+
+function constructDOMG3(data,maxvalue){
+  var li23="",li13="";
+  console.log(maxvalue);
+  for(attr in maxvalue){
+    li13+='<input type="checkbox" class = "addin" name="User" value="'+attr+'">'+attr+'</input><br><input type="range" class = "slidfi" min="0" max="1" value=".5" step="0.1"><br>';
+    li23+='<input type="checkbox" class = "addinHide" name="User" value="'+attr+'">'+attr+'</input><br>';
+  }
+  //document.getElementById('merge-control').innerHTML=li1;
+  //document.getElementById('hide-control-3').innerHTML=li23;
+  return 0;
+}
+
+function constructDOMG4(data,maxvalue){
+  var li24="",li14="";
+  console.log(maxvalue);
+  for(attr in maxvalue){
+    li14+='<input type="checkbox" class = "addin" name="User" value="'+attr+'">'+attr+'</input><br><input type="range" class = "slidfi" min="0" max="1" value=".5" step="0.1"><br>';
+    li24+='<input type="checkbox" class = "addinHide" name="User" value="'+attr+'">'+attr+'</input><br>';
+  }
+  //document.getElementById('merge-control').innerHTML=li1;
+  //document.getElementById('hide-control-4').innerHTML=li24;
+  return 0;
+}
+
+// This function is used to draw the initial chart.
+function drawInitialchart(){
+  //filename=file[0]['name'];  
+  //filename=document.getElementById('input-files');
+  //console.log(filename);
+  d3.csv("O1V1_final.csv", function(error, data) {
+      maxvalue = getMaxData(data);
+      constructDOM(data,maxvalue);
+      drawchart(data,"example");
+  });
+    
+	d3.csv("O1V2_final.csv", function(error, data1) {
+      maxvalue1 = getMaxData(data1);
+      constructDOMG2(data1,maxvalue1);
+      drawchart(data1,"example2");
+  });
+
+	d3.csv("O2V1_final.csv", function(error, data1) {
+      maxvalue1 = getMaxData(data1);
+      constructDOMG3(data1,maxvalue1);
+      drawchart(data1,"example3");
+  });
+
+	d3.csv("O2V2_final.csv", function(error, data1) {
+      maxvalue1 = getMaxData(data1);
+      constructDOMG4(data1,maxvalue1);
+      drawchart(data1,"example4");
+  });
+
+}
+// Triggering the initial Chart.
+
+//drawInitialchart();
+// this function is used to generate an object information containing 
+// details of current state of the checkboxes.
+function myFunction() {
+  dd = document.getElementsByClassName("addin");
+  ds = document.getElementsByClassName("slidfi");
+  var arr = [];
+  for(var i = 0;i< dd.length;i++){
+    var obj = {};
+    obj["check"] = dd[i].checked;
+    obj["value"] = ds[i].value;
+    obj["headers"] = dd[i].value;
+    arr.push(obj)
+  }
+ // console.log(arr)
+ return arr;   
+}
+
+function hideAxisOnly() {
+  ddHide = document.getElementsByClassName("addinHide");
+  
+  var arrHide = [];
+  for(var i = 0;i< ddHide.length;i++){
+    var objHide = {};
+    objHide["checkHide"] = ddHide[i].checked;
+    objHide["headersHide"] = ddHide[i].value;
+    arrHide.push(objHide)
+  }
+ return arrHide;   
+}
+
+function getUpdatedData() {
+  var status = myFunction();
+  var statusHide = hideAxisOnly();
+
+//  var status2 = myFunction2();
+
+var groups = ["O1V1_final.csv", "O1V2_final.csv", "O2V1_final.csv", "O2V2_final.csv"];
+var showEle = ["example", "example2", "example3", "example4"];
+
+//for(var idx=0; idx<4; idx++){
+//var eleDel = showEle[idx];
+//alert(eleDel)
+//alert(groups[i])
+
+ d3.csv("O1V1_final.csv", function(error, data,idx) {
+   // alert("eleDel: "+idx)
+    data.forEach(function(d){
+	
+      var temp=[];
+      var tempHide=[];
+    //   var temp2=[];
+      for(var i=0;i<status.length;i++){
+        if (status[i]["check"]){
+          temp.push((d[status[i]["headers"]]*status[i]["value"])/maxvalue[status[i]["headers"]])
+        }
+      }
+
+
+
+var pp = [];
+
+  for(var i=0;i<status.length;i++){
+        if (status[i]["check"]){
+          pp.push(status[i]["value"]);
+        }
+      }
+
+// HIDING THE AXIS
+      for(var i=0;i<statusHide.length;i++){
+        if (statusHide[i]["checkHide"]){
+          tempHide.push(d[statusHide[i]["headersHide"]]*statusHide[i]["valueHide"])
+        }
+      }
+
+
+      if (temp.length >0){
+        var sum_value = d3.sum(pp);
+        var sum = temp.reduce(function(pv, cv) { return pv + cv; }, 0);
+        d["W-Avg"] = sum/sum_value;
+        
+        }
+ if (tempHide.length >0){
+        statusHide.forEach(function(objHide) {
+            if(objHide['checkHide']){
+              delete d[objHide['headersHide']]
+            } 
+        });
+      }
+
+
+
+    });
+    //drawchart(data);
+
+	//alert("hey")
+    drawchart(data,"example");
+  });
+  //}
+   d3.csv("O1V2_final.csv", function(error, data,idx) {
+   // alert("eleDel: "+idx)
+    data.forEach(function(d){
+	
+      var temp=[];
+      var tempHide=[];
+    //   var temp2=[];
+      for(var i=0;i<status.length;i++){
+        if (status[i]["check"]){
+          temp.push((d[status[i]["headers"]]*status[i]["value"])/maxvalue[status[i]["headers"]])
+        }
+      }
+
+
+
+var pp = [];
+
+  for(var i=0;i<status.length;i++){
+        if (status[i]["check"]){
+          pp.push(status[i]["value"]);
+        }
+      }
+
+// HIDING THE AXIS
+      for(var i=0;i<statusHide.length;i++){
+        if (statusHide[i]["checkHide"]){
+          tempHide.push(d[statusHide[i]["headersHide"]]*statusHide[i]["valueHide"])
+        }
+      }
+
+
+      if (temp.length >0){
+        var sum_value = d3.sum(pp);
+        var sum = temp.reduce(function(pv, cv) { return pv + cv; }, 0);
+        d["W-Avg"] = sum/sum_value;
+        
+        }
+ if (tempHide.length >0){
+        statusHide.forEach(function(objHide) {
+            if(objHide['checkHide']){
+              delete d[objHide['headersHide']]
+            } 
+        });
+      }
+
+
+
+    });
+    //drawchart(data);
+
+	//alert("hey")
+    drawchart(data,"example2");
+  });
+   d3.csv("O2V1_final.csv", function(error, data,idx) {
+   // alert("eleDel: "+idx)
+    data.forEach(function(d){
+	
+      var temp=[];
+      var tempHide=[];
+    //   var temp2=[];
+      for(var i=0;i<status.length;i++){
+        if (status[i]["check"]){
+          temp.push((d[status[i]["headers"]]*status[i]["value"])/maxvalue[status[i]["headers"]])
+        }
+      }
+
+
+
+var pp = [];
+
+  for(var i=0;i<status.length;i++){
+        if (status[i]["check"]){
+          pp.push(status[i]["value"]);
+        }
+      }
+
+// HIDING THE AXIS
+      for(var i=0;i<statusHide.length;i++){
+        if (statusHide[i]["checkHide"]){
+          tempHide.push(d[statusHide[i]["headersHide"]]*statusHide[i]["valueHide"])
+        }
+      }
+
+
+      if (temp.length >0){
+        var sum_value = d3.sum(pp);
+        var sum = temp.reduce(function(pv, cv) { return pv + cv; }, 0);
+        d["W-Avg"] = sum/sum_value;
+        
+        }
+ if (tempHide.length >0){
+        statusHide.forEach(function(objHide) {
+            if(objHide['checkHide']){
+              delete d[objHide['headersHide']]
+            } 
+        });
+      }
+
+
+
+    });
+    //drawchart(data);
+
+	//alert("hey")
+    drawchart(data,"example3");
+  });
+   d3.csv("O2V2_final.csv", function(error, data,idx) {
+    //alert("eleDel: "+idx)
+    data.forEach(function(d){
+	
+      var temp=[];
+      var tempHide=[];
+    //   var temp2=[];
+      for(var i=0;i<status.length;i++){
+        if (status[i]["check"]){
+          temp.push((d[status[i]["headers"]]*status[i]["value"])/maxvalue[status[i]["headers"]])
+        }
+      }
+
+
+
+var pp = [];
+
+  for(var i=0;i<status.length;i++){
+        if (status[i]["check"]){
+          pp.push(status[i]["value"]);
+        }
+      }
+
+// HIDING THE AXIS
+      for(var i=0;i<statusHide.length;i++){
+        if (statusHide[i]["checkHide"]){
+          tempHide.push(d[statusHide[i]["headersHide"]]*statusHide[i]["valueHide"])
+        }
+      }
+
+
+      if (temp.length >0){
+        var sum_value = d3.sum(pp);
+        var sum = temp.reduce(function(pv, cv) { return pv + cv; }, 0);
+        d["W-Avg"] = sum/sum_value;
+        
+        }
+ if (tempHide.length >0){
+        statusHide.forEach(function(objHide) {
+            if(objHide['checkHide']){
+              delete d[objHide['headersHide']]
+            } 
+        });
+      }
+
+
+
+    });
+    //drawchart(data);
+
+	//alert("hey")
+    drawchart(data,"example4");
+  });
+}
+
+
+function getMaxData(data){
+  var obj = {};
+  console.log(data[0]);
+  console.log("checkpoint 1");
+  for (attr in data[0]){
+    obj[attr]=0;
+  }
+  for(var i=0;i<data.length;i++){
+    for(attr in obj){
+      if(Math.abs(obj[attr])<Math.abs(data[i][attr])){
+        obj[attr]=Math.abs(data[i][attr]);
+      }
+   }
+  }
+  console.log(obj);
+
+return obj;
+}
+
+// function used to draw updated chart.
+var pcz;
+var dataset;
+
+var composite_modes = [
+  "source-over",
+  "lighter",
+  "destination-over",
+  "darken"
+];
+
+// keep the charts in an array
+var pc_compositing = [];
+
+function drawchart(data,valId) {
+	//alert(valId)
+  console.log(data);
+  var prop_list=Object.keys(data[0]);
+  //alert(prop_list);
+ document.getElementById(""+valId).innerHTML = "";
+ dataset = data;
+  pcz = d3.parcoords()("#"+valId)
+    .data(data)
+    .bundlingStrength(0) // set bundling strength
+    .smoothness(0)
+    //.bundleDimension("SkewY")
+    .showControlPoints(false)
+    .mode("queue")
+    .render()
+	//.color("red")
+    //.hideAxis(["StimuliName"])
+    .composite("darken")
+    .alpha(0.35)
+    .brushMode("1D-axes")  // enable brushing
+    .interactive() // command line mode
+    .reorderable()
+    .updateAxes()
+
+
+change_color(prop_list[2]);
+
+ pcz.svg.selectAll(".dimension")
+           .on("click", change_color);
+
+
+// smoothness
+  d3.select("#smoothness").on("change", function() {
+    d3.select("#smooth").text(this.value);
+    pcz.smoothness(this.value).render();
+  });
+
+  // bundling strength slider
+  d3.select("#bundling").on("change", function() {
+    d3.select("#strength").text(this.value);
+    pcz.bundlingStrength(this.value).render();
+  });
+
+ // document.getElementById("bundleDimension").innerHTML = "";
+  var select = d3.select("#bundleDimension").append("select").on("change", changeBundle);
+
+  var options = select.selectAll('option')
+    .data(d3.keys(pcz.dimensions()));
+
+  options
+    .enter()
+    .append("option")
+    .attr("value", function(d) {return d;})
+    .text(function(d) {return d;});
+
+  function changeBundle() {
+    pcz.bundleDimension(this.value);
+  }
+
+
+//////////////////////////////////////////////////
+}
+
+// Remove all but selected from the dataset
+ d3.select("#keep-data")
+        .on("click", function() {
+          new_data = pcz.brushed();
+          if (new_data.length == 0) {
+            alert("Please do not select all the data when keeping/excluding");
+            return false;
+          }
+          callUpdate(new_data);
+        });
+    
+      // Exclude selected from the dataset
+      d3.select("#exclude-data")
+        .on("click", function() {
+          new_data = _.difference(dataset, pcz.brushed());
+          if (new_data.length == 0) {
+            alert("Please do not select all the data when keeping/excluding");
+            return false;
+          }
+          callUpdate(new_data);
+        });
+        
+      
+      d3.select("#reset-data")
+         .on("click", function() {
+               callUpdate(dataset);
+         });
+       
+      
+
+         // color scale for zscores
+    var color_scale = d3.scale.linear()
+                        .domain([-2,-0.5,0.5,2,3.5])
+                        .range(["#DE5E60", "steelblue", "#98df8a","pink","red"])
+                        .interpolate(d3.interpolateLab);
+
+
+    // update color
+    function change_color(dimension) {
+      pcz.svg.selectAll(".dimension")
+        .style("font-weight", "normal")
+        .filter(function(d) { return d == dimension; })
+        .style("font-weight", "bold")
+
+      pcz.color(zcolor(pcz.data(),dimension)).render()
+    }
+
+    // return color function based on plot and dimension
+    function zcolor(col, dimension) {
+      var z = zscore(_(col).pluck(dimension).map(parseFloat));
+      return function(d) { return color_scale(z(d[dimension]))}
+    };
+
+    // color by zscore
+    function zscore(col) {
+      var n = col.length,
+      mean = _(col).mean(),
+      sigma = _(col).stdDeviation();
+
+      return function(d) {
+        return (d-mean)/sigma;
+      };
+    };
+    
+
+    function callUpdate(data) {
+             pcz.data(data).brush().render().updateAxes();          
+    }
+    
+
+    function callUpdate(data) {
+             pcz.data(data).brush().render().updateAxes();          
+    }
+
+</script>

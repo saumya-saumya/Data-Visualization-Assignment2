@@ -1,0 +1,510 @@
+
+<!doctype html>
+<head>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+    <meta content="utf-8" http-equiv="encoding">
+</head>
+<title>Basic Parallel Coordinates Example</title>
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/parcoords/0.7.0/d3.parcoords.css">
+<link rel="stylesheet" type="text/css" href="style.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<!-- custom stling goes here -->
+
+<body>
+    <div class="container-fluid">
+      <div class="row bottom">
+          <div class ="col-md-12" >
+          <!--<div id="example" class="parcoords" style="width:900px;height:250px"></div>-->
+            <strong style="text-align:center">Parallel Coordinate will be here</strong>
+            <div id="example" class="parcoords" style="width:100%;min-height:550px;height:auto;margin-left: 0px;"></div>
+          </div>
+          <!--<div class ="col-md-2" style="text-align:center">
+          <div id="example" class="parcoords" style="width:900px;height:250px"></div>
+          <strong>Stimuli Name </strong>
+          </div>-->
+
+
+
+
+      </div>
+      <hr></hr>
+<div class="row">
+     
+
+
+<div class="col-md-4 right" >
+
+   <div class="col-md-12 " style="text-align:center">
+                <strong>Dissolving Matrices with their Weights (0 - 1)</strong>
+                
+  </div>
+        
+  <div class="col-md-12 " style="">        
+        <div class="col-md-6 ">
+            <input type="checkbox" class = "addin" name="User" value="AvgFix(ms)"> Avg Fix</input>  <br>     <input type="range" class = "slidfi" id="d1" min="0" max="1" value=".5" step="0.1" id="p1"><br>
+            <input type="checkbox" class = "addin" name="User" value="AvgSac(px)" > Avg Sac</input><br>      <input type="range" class = "slidfi" id="d2" min="0" max="1" value=".5" step="0.1" id="p2"><br>
+            <input type="checkbox" class = "addin" name="User" value="AvgSacDur(ms)"> Avg Sac Dur</input><br><input type="range" class = "slidfi" id="d33" min="0" max="1" value=".5" step="0.1" id="p3"><br>
+            <input type="checkbox" class = "addin" name="User" value="ScanpathL(px)"> Scanpath L</input><br> <input type="range" class = "slidfi" id="d4" min="0" max="1" value=".5" step="0.1" id="p4"><br>
+             <input type="checkbox" class = "addin" name="User" value="SdX" > St Dev X </input><br>      <input type="range" class = "slidfi" id="d5" min="0" max="1" value=".5" step="0.1" id="p5"><br>
+            <input type="checkbox" class = "addin" name="User" value="SdY" > St Dev Y</input><br>        <input type="range" class = "slidfi" id="d6" min="0" max="1" value=".5" step="0.1" id="p6"><br>
+            <input type="checkbox" class = "addin" name="User" value="SkewX" > Skew X</input><br>        <input type="range" class = "slidfi" id="d7" min="0" max="1" value=".5" step="0.1" id="p7"><br>
+            <input type="checkbox" class = "addin" name="User" value="SkewY"> Skew Y</input><br>         <input type="range" class = "slidfi" id="d8" min="0" max="1" value=".5" step="0.1" id="p8"><br>
+           
+        </div> 
+      
+        <div class="col-md-6 ">
+            <input type="checkbox" class = "addin" name="User" value="Fix_Num"> No Fix</input><br>        <input type="range" class = "slidfi" id="d9" min="0" max="1" value=".5" step="0.1" id="p9"><br>
+            <input type="checkbox" class = "addin" name="User" value="Fix_Rate" > Fix Rate</input><br>    <input type="range" class = "slidfi" id="d10" min="0" max="1" value=".5" step="0.1" id="p10"><br>
+            <input type="checkbox" class = "addin" name="User" value="Sac_Num"> No Sacc</input><br>       <input type="range" class = "slidfi" id="d11" min="0" max="1" value=".5" step="0.1" id="p11"><br>
+            <input type="checkbox" class = "addin" name="User" value="Sac_Rate" > Sacc Rate</input><br>   <input type="range" class = "slidfi" id="d12" min="0" max="1" value=".5" step="0.1" id="p12"><br>
+            <input type="checkbox" class = "addin" name="User" value="KurtX" > Kurtosis X</input><br>     <input type="range" class = "slidfi" id="d13" min="0" max="1" value=".5" step="0.1" id="p13"><br>
+            <input type="checkbox" class = "addin" name="User" value="KurtY"> Kurtosis Y</input><br>      <input type="range" class = "slidfi" id="d14" min="0" max="1" value=".5" step="0.1" id="p14"><br>
+            <input type="checkbox" class = "addin" name="User" value="Comp_Time(s)" > Comp Time</input><br>  <input type="range" class = "slidfi" id="d15" min="0" max="1" value=".5" step="0.1" id="p15"><br>
+            <input type="checkbox" class = "addin" name="User" value="K-Coef" > K-Coef</input><br>        <input type="range" class = "slidfi" id="d16" min="0" max="1" value=".5" step="0.1" id="p16"><br>
+        </div>
+            <br> </br>
+  </div>
+<br> </br>
+ </div>
+
+<div class ="col-md-2 right">
+  
+  <div class="col-md-12 " style="text-align:center">
+                <strong>Polyline Smoothness &amp; Bundling</strong>
+                
+  </div>
+     <br> </br>
+  
+              <p>Smoothness. The current value is <strong id="smooth">0</strong><br></br>
+                  <input type="range" min="0" max="0.3" value="0" step="0.05" id="smoothness">
+              </p>
+                           <br>
+              <p>Bundling Strength. The current value is <strong id="strength">0</strong><br></br>
+                  <input type="range" min="0" max="3" value="0" step="0.1" id="bundling" >
+              </p>
+                                  <br>
+              <div style="text-align:center">             
+                 <div id="bundleDimension">Bundle using clusters determined by: </div>
+              </div>
+
+</div>
+
+<div class ="col-md-2 right" style="text-align:center" >
+<br></>
+      <button id="keep-data" type="button" class="btn btn-primary" >Select</button>
+      <button id="exclude-data" type="button" class="btn btn-primary" >Delete</button>
+      <button id="reset-data" type="button" class="btn btn-primary" >Reset</button>
+      <br>
+</div>
+
+<div class="col-md-4" >
+    <div class="col-md-12 " style="text-align:center">
+    <strong > Hiding Selected Axis from Parallel Coordinate</strong><br>
+     <br>
+    </div>
+
+        <div class="col-md-3 ">
+            <input type="checkbox" class = "addinHide" name="User" value="User" > User </input><br>
+            <input type="checkbox" class = "addinHide" name="User" value="AvgFix(ms)"> Avg Fix</input><br>
+            <input type="checkbox" class = "addinHide" name="User" value="AvgSac(px)" > Avg Sac</input><br>
+            <input type="checkbox" class = "addinHide" name="User" value="AvgSacDur(ms)"> Avg Sac Dur</input><br>
+            
+        </div> 
+        <div class="col-md-3 ">
+            <input type="checkbox" class = "addinHide" name="User" value="ScanpathL(px)"> Scanpath L</input><br>
+            <input type="checkbox" class = "addinHide" name="User" value="SdX" > SdX </input><br>
+            <input type="checkbox" class = "addinHide" name="User" value="SdY" > SdY</input><br>
+            <input type="checkbox" class = "addinHide" name="User" value="SkewX" > SkewX</input><br>
+         <!--   <input type="checkbox" class = "addinHide" name="User" value="SkewY"  class="disabled"> Skew Y</input><br>     -->
+        </div>
+        <div class="col-md-3 ">
+            <input type="checkbox" class = "addinHide" name="User" value="Fix_Num"> No. of Fix</input><br>
+            <input type="checkbox" class = "addinHide" name="User" value="Fix_Rate" > Fix Rate</input><br>
+            <input type="checkbox" class = "addinHide" name="User" value="Sac_Num"> No. of Sacc</input><br>
+            <input type="checkbox" class = "addinHide" name="User" value="Sac_Rate" > Sac Rate</input><br>
+        </div>
+
+        <div class="col-md-3 ">
+            <input type="checkbox" class = "addinHide" name="User" value="KurtX" > KurtX</input><br>
+            <input type="checkbox" class = "addinHide" name="User" value="KurtY"> KurtY</input><br> 
+            <input type="checkbox" class = "addinHide" name="User" value="Comp_Time(s)" > Comp Time</input><br>
+            <input type="checkbox" class = "addinHide" name="User" value="K-Coef" > K-Coef</input><br>
+        </div>
+</div>
+</div>
+<br>
+<div class="col-md-4 " style="text-align:center">
+
+</div>
+<div class="col-md-4 " style="text-align:center">
+<button onclick="getUpdatedData()" type="button" class="btn btn-primary" > <p style="text-align:center">Apply </p></button>
+</div>
+<div class="col-md-5 " style="text-align:center">
+
+</div>
+
+</body>
+<!-- 3rd party Js libraries -->
+<!--<script src="lib/d3.js"></script> -->
+<script src="https://d3js.org/d3.v5.min.js"></script>
+<script src="d3.parcoords.js"></script>
+<script src="sylvester.js"></script>
+<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
+<script src="http://www.columbia.edu/~cme2126/datavisuals/_include/js/lib/d3.underscore.math.js"></script>
+<script src="http://www.columbia.edu/~cme2126/datavisuals/_include/js/lib/d3.divgrid.js"></script>
+<!--<link rel="stylesheet" href="http://www.columbia.edu/~cme2126/datavisuals/_include/css/fonts/droid.css" type="text/css" charset="utf-8" />-->
+<link href="add_axis_value6.css" rel="stylesheet">
+<script   src="https://code.jquery.com/jquery-2.2.4.min.js"   integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="   crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/7.1.0/bootstrap-slider.js"></script>
+<!-- Custom Javascript code goes here -->
+<script>
+
+
+// This function is used to draw the initial chart.
+function drawInitialchart(){
+  d3.csv('filtered_final_color_useronly.csv', function(error, data) {
+ //   console.log(error)
+ alert("read: "+data)
+      maxvalue = getMaxData(data);
+     drawchart(data)
+  });
+}
+// Triggering the initial Chart.
+
+drawInitialchart();
+// this function is used to generate an object information containing 
+// details of current state of the checkboxes.
+function myFunction() {
+  dd = document.getElementsByClassName("addin");
+  ds = document.getElementsByClassName("slidfi");
+  
+  var arr = [];
+  
+
+  for(var i = 0;i< dd.length;i++){
+    var obj = {};
+    obj["check"] = dd[i].checked;
+    obj["value"] = ds[i].value;
+    obj["headers"] = dd[i].value;
+    arr.push(obj)
+  }
+ // console.log(arr)
+ return arr;   
+}
+
+function hideAxisOnly() {
+  ddHide = document.getElementsByClassName("addinHide");
+  
+  var arrHide = [];
+  for(var i = 0;i< ddHide.length;i++){
+    var objHide = {};
+    objHide["checkHide"] = ddHide[i].checked;
+    objHide["headersHide"] = ddHide[i].value;
+    arrHide.push(objHide)
+  }
+ return arrHide;   
+}
+
+function getUpdatedData() {
+  var status = myFunction();
+  var statusHide = hideAxisOnly();
+
+//  var status2 = myFunction2();
+
+
+  d3.csv('filtered_final_color_useronly.csv', function(error, data) {
+    data.forEach(function(d){
+      var temp=[];
+      var tempHide=[];
+    //   var temp2=[];
+      for(var i=0;i<status.length;i++){
+        if (status[i]["check"]){
+          temp.push((d[status[i]["headers"]]*status[i]["value"])/maxvalue[status[i]["headers"]])
+        }
+      }
+
+
+
+var pp = [];
+
+  for(var i=0;i<status.length;i++){
+        if (status[i]["check"]){
+          pp.push(status[i]["value"]);
+        }
+      }
+
+// HIDING THE AXIS
+      for(var i=0;i<statusHide.length;i++){
+        if (statusHide[i]["checkHide"]){
+          tempHide.push(d[statusHide[i]["headersHide"]]*statusHide[i]["valueHide"])
+        }
+      }
+
+
+      if (temp.length >0){
+        var sum_value = d3.sum(pp);
+        var sum = temp.reduce(function(pv, cv) { return pv + cv; }, 0);
+        d["W-Avg"] = sum/sum_value;
+        
+        }
+ if (tempHide.length >0){
+        statusHide.forEach(function(objHide) {
+            if(objHide['checkHide']){
+              delete d[objHide['headersHide']]
+            } 
+        });
+      }
+
+
+
+    });
+    //drawchart(data);
+    drawchart(data);
+  });
+}
+
+
+function getMaxData(data){
+  var obj = {};
+
+obj["AvgFix(ms)"] = 0;
+obj["AvgSac(px)"] =0;
+obj["AvgSacDur(ms)"] =0;
+obj["ScanpathL(px)"] = 0;
+obj["SdX"] =0;
+obj["SdY"] =0;
+obj["SkewX"] = 0;
+obj["SkewY"] =0;
+obj["KurtX"] =0;
+obj["KurtY"] = 0;
+obj["Fix_Num"] =0;
+obj["Sac_Num"] =0;
+obj["Fix_Rate"] = 0;
+obj["Sac_Rate"] =0;
+obj["Comp_Time(s)"] =0;
+obj["K-Coef"] = 0;
+
+for(i =0;i<data.length;i++){
+  obj_point = data[i];
+
+  if (parseFloat(obj_point["AvgFix(ms)"])>parseFloat(obj["AvgFix(ms)"])) {
+    obj["AvgFix(ms)"] = parseFloat(obj_point["AvgFix(ms)"]);
+  };
+if (parseFloat(obj_point["AvgSac(px)"])>parseFloat(obj["AvgSac(px)"])) {
+    obj["AvgSac(px)"] = parseFloat(obj_point["AvgSac(px)"]);
+  };
+  if (parseFloat(obj_point["AvgSacDur(ms)"])>parseFloat(obj["AvgSacDur(ms)"])) {
+    obj["AvgSacDur(ms)"] = parseFloat(obj_point["AvgSacDur(ms)"]);
+  };
+  if (parseFloat(obj_point["ScanpathL(px)"])>parseFloat(obj["ScanpathL(px)"])) {
+    obj["ScanpathL(px)"] = parseFloat(obj_point["ScanpathL(px)"]);
+  };
+  if (parseFloat(obj_point["SdX"])>parseFloat(obj["SdX"])) {
+    obj["SdX"] = parseFloat(obj_point["SdX"]);
+  };
+  if (parseFloat(obj_point["SdY"])>parseFloat(obj["SdY"])) {
+    obj["SdY"] = parseFloat(obj_point["SdY"]);
+  };
+  if (Math.abs(parseFloat(obj_point["SkewX"]))>parseFloat(obj["SkewX"])) {
+    obj["SkewX"] = Math.abs(parseFloat(obj_point["SkewX"]));
+  };
+  if (Math.abs(parseFloat(obj_point["SkewY"]))>parseFloat(obj["SkewY"])) {
+    obj["SkewY"] = Math.abs(parseFloat(obj_point["SkewY"]));
+  };
+  if (parseFloat(obj_point["KurtX"])>parseFloat(obj["KurtX"])) {
+    obj["KurtX"] = parseFloat(obj_point["KurtY"]);
+  };
+  if (parseFloat(obj_point["KurtY"])>parseFloat(obj["KurtY"])) {
+    obj["KurtY"] = parseFloat(obj_point["KurtY"]);
+  };
+  if (parseFloat(obj_point["Fix_Num"])>parseFloat(obj["Fix_Num"])) {
+    obj["Fix_Num"] = parseFloat(obj_point["Fix_Num"]);
+  };
+  if (parseFloat(obj_point["Fix_Rate"])>parseFloat(obj["Fix_Rate"])) {
+    obj["Fix_Rate"] = parseFloat(obj_point["Fix_Rate"]);
+  };
+  if (parseFloat(obj_point["Sac_Num"])>parseFloat(obj["Sac_Num"])) {
+    obj["Sac_Num"] = parseFloat(obj_point["Sac_Num"]);
+  };
+  if (parseFloat(obj_point["Sac_Rate"])>parseFloat(obj["Sac_Rate"])) {
+    obj["Sac_Rate"] = parseFloat(obj_point["Sac_Rate"]);
+  };
+  if (parseFloat(obj_point["Comp_Time(s)"])>parseFloat(obj["Comp_Time(s)"])) {
+    obj["Comp_Time(s)"] = parseFloat(obj_point["Comp_Time(s)"]);
+  };
+  if (Math.abs(parseFloat(obj_point["K-Coef"]))>parseFloat(obj["K-Coef"])) {
+    obj["K-Coef"] = Math.abs(parseFloat(obj_point["K-Coef"]));
+  };
+
+}
+return obj;
+}
+
+// function used to draw updated chart.
+var pcz;
+var dataset;
+
+var composite_modes = [
+  "source-over",
+  "lighter",
+  "destination-over",
+  "darken"
+];
+
+// keep the charts in an array
+var pc_compositing = [];
+
+function drawchart(data) {
+ document.getElementById("example").innerHTML = "";
+ dataset = data;
+  pcz = d3.parcoords()("#example")
+    .data(data)
+    .bundlingStrength(0) // set bundling strength
+    .smoothness(0)
+    .bundleDimension("SkewY")
+    .showControlPoints(false)
+    .mode("queue")
+    .render()
+    .hideAxis(["StimuliName"])
+    .composite("darken")
+    .alpha(0.35)
+    .brushMode("1D-axes")  // enable brushing
+    .interactive() // command line mode
+    .reorderable()
+    .updateAxes()
+
+
+change_color("SkewY");
+
+ pcz.svg.selectAll(".dimension")
+           .on("click", change_color);
+
+
+/*var grid = d3.divgrid();
+      d3.select("#grid")
+          .datum(data.slice(0,10))
+          .call(grid)
+          .selectAll(".row")
+          .on({
+            "mouseover": function(d) { pcz.highlight([d]) },
+            "mouseout": pcz.unhighlight
+          });
+
+      pcz.on("brush", function(d) {
+        d3.select("#grid")
+          .datum(d.slice(0,10))
+          .call(grid)
+          .selectAll(".row")
+          .on({
+            "mouseover": function(d) { pcz.highlight([d])},
+            "mouseout": pcz.unhighlight
+          });
+      });
+*/
+
+///////////////Bundling and Smoothness
+/////////////////////////////////////////
+
+// smoothness
+  d3.select("#smoothness").on("change", function() {
+    d3.select("#smooth").text(this.value);
+    pcz.smoothness(this.value).render();
+  });
+
+  // bundling strength slider
+  d3.select("#bundling").on("change", function() {
+    d3.select("#strength").text(this.value);
+    pcz.bundlingStrength(this.value).render();
+  });
+
+  document.getElementById("bundleDimension").innerHTML = "";
+  var select = d3.select("#bundleDimension").append("select").on("change", changeBundle);
+
+  var options = select.selectAll('option')
+    .data(d3.keys(pcz.dimensions()));
+
+  options
+    .enter()
+    .append("option")
+    .attr("value", function(d) {return d;})
+    .text(function(d) {return d;});
+
+  function changeBundle() {
+    pcz.bundleDimension(this.value);
+  }
+
+
+//////////////////////////////////////////////////
+}
+
+// Remove all but selected from the dataset
+ d3.select("#keep-data")
+        .on("click", function() {
+          new_data = pcz.brushed();
+          if (new_data.length == 0) {
+            alert("Please do not select all the data when keeping/excluding");
+            return false;
+          }
+          callUpdate(new_data);
+        });
+    
+      // Exclude selected from the dataset
+      d3.select("#exclude-data")
+        .on("click", function() {
+          new_data = _.difference(dataset, pcz.brushed());
+          if (new_data.length == 0) {
+            alert("Please do not select all the data when keeping/excluding");
+            return false;
+          }
+          callUpdate(new_data);
+        });
+        
+      
+      d3.select("#reset-data")
+         .on("click", function() {
+               callUpdate(dataset);
+         });
+       
+
+         // color scale for zscores
+    var color_scale = d3.scale.linear()
+                        .domain([-2,-0.5,0.5,2,3.5])
+                        .range(["#DE5E60", "steelblue", "steelblue", "#98df8a"])
+                        .interpolate(d3.interpolateLab);
+
+
+    // update color
+    function change_color(dimension) {
+      pcz.svg.selectAll(".dimension")
+        .style("font-weight", "normal")
+        .filter(function(d) { return d == dimension; })
+        .style("font-weight", "bold")
+
+      pcz.color(zcolor(pcz.data(),dimension)).render()
+    }
+
+    // return color function based on plot and dimension
+    function zcolor(col, dimension) {
+      var z = zscore(_(col).pluck(dimension).map(parseFloat));
+      return function(d) { return color_scale(z(d[dimension]))}
+    };
+
+    // color by zscore
+    function zscore(col) {
+      var n = col.length,
+      mean = _(col).mean(),
+      sigma = _(col).stdDeviation();
+
+      return function(d) {
+        return (d-mean)/sigma;
+      };
+    };
+    
+
+    function callUpdate(data) {
+             pcz.data(data).brush().render().updateAxes();          
+    }
+
+</script>
